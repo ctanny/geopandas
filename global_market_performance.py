@@ -157,7 +157,7 @@ def get_etf_holdings(symbol):
 
 df_tickers = pd.read_excel('country_tickers.xlsx', index_col=0, header=0)
 start_date = '2021-12-31'
-end_date = '2022-03-10'
+end_date = '2022-03-11'
 
 # initialize dicts and df
 returns_dict = collections.defaultdict(dict)
@@ -381,11 +381,11 @@ plt.show()
 
 # %% create tables
 
-df_developed = df_merged[df_merged['Country'].isin(developed)].sort_values('Return', ascending=False)
-df_emerging = df_merged[~df_merged['Country'].isin(developed)].sort_values('Return', ascending=False)
+df_developed = df_joined[df_joined['Country'].isin(developed)].sort_values('Return', ascending=False)
+df_emerging = df_joined[~df_joined['Country'].isin(developed)].sort_values('Return', ascending=False)
 
-dev_top_5 = df_developed.head(5)
-dev_bottom_5 = df_developed.tail(5)
+dev_top_5 = df_developed[df_developed['Return'].notna()][['Country', 'Return', 'XWD Weight (%)']].head(5)
+dev_bottom_5 = df_developed[df_developed['Return'].notna()][['Country', 'Return', 'XWD Weight (%)']].tail(5)
 
 em_top_5 = df_emerging.head(5)
 em_bottom_5 = df_emerging.tail(5)
