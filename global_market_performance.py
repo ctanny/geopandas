@@ -390,8 +390,9 @@ dev_bottom_5 = df_developed[df_developed['Return'].notna()][['Country', 'Return'
 em_top_5 = df_emerging[df_emerging['Return'].notna()][['Country', 'Return', 'EEM Weight (%)']].head(5)
 em_bottom_5 = df_emerging[df_emerging['Return'].notna()][['Country', 'Return', 'EEM Weight (%)']].tail(5)
 
-top_5 = df_joined[['Country', 'Return', 'Weight'].notna()].sort_values(by='Return', ascending=False).head(5)
-bottom_5 = df_joined[['Country', 'Return', 'Weight'].notna()].sort_values(by='Return', ascending=False).tail(5)
+top_5 = df_joined[['Country', 'Return', 'Weight']].sort_values(by='Return', ascending=False).head(5)
+bottom_5 = df_joined[['Country', 'Return', 'Weight']].sort_values(by='Return', ascending=False,
+                                                                  na_position='first').tail(5)
 
 top_5.rename(columns={'Return': 'Return (%)',
                       'Weight': 'Weight (%)*'},
