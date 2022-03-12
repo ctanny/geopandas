@@ -205,7 +205,7 @@ def gen_2nd_component_row(width, height):
          colors.HexColor(background_color)),
         ('TEXTCOLOR', (0, 0), (0, 0), colors.white),
         ('LINEBELOW', (0, 0), (0, 0), 1, colors.HexColor(line_color)),
-        # Right header bar formating
+        # Right header bar formatting
         ('ALIGN', (2, 0), (2, 0), 'CENTER'),  # horizontal
         ('VALIGN', (2, 0), (2, 0), 'MIDDLE'),  # vertical
         ('BACKGROUND', (2, 0), (2, 0),
@@ -345,6 +345,7 @@ def generate_table(table_name):
          colors.HexColor(background_color)),
         ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
         ('LINEBELOW', (0, 0), (-1, 0), 1, colors.HexColor(line_color)),
+        ('FONTSIZE', (0, 0), (-1, -1), 8)
         ])
 
     return res

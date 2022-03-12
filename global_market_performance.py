@@ -157,7 +157,7 @@ def get_etf_holdings(symbol):
 
 df_tickers = pd.read_excel('country_tickers.xlsx', index_col=0, header=0)
 start_date = '2021-12-31'
-end_date = '2022-03-10'
+end_date = '2022-03-11'
 
 # initialize dicts and df
 returns_dict = collections.defaultdict(dict)
@@ -374,31 +374,51 @@ cb_ax.tick_params(labelsize=20)
 plt.yticks([])
 plt.xticks([])
 plt.tight_layout()
-plt.show()
+# plt.show()
 
-# plt.savefig(f'global_market_performance_{end_date}.png', bbox_inches='tight')
+plt.savefig(f'global_market_performance_{end_date}.png', bbox_inches='tight')
 
 
 # %% create tables
 
-df_developed = df_merged[df_merged['Country'].isin(developed)].sort_values('Return', ascending=False)
-df_emerging = df_merged[~df_merged['Country'].isin(developed)].sort_values('Return', ascending=False)
+df_developed = df_joined[df_joined['Country'].isin(developed)].sort_values('Return', ascending=False)
+df_emerging = df_joined[~df_joined['Country'].isin(developed)].sort_values('Return', ascending=False)
 
-dev_top_5 = df_developed.head(5)
-dev_bottom_5 = df_developed.tail(5)
+dev_top_5 = df_developed[df_developed['Return'].notna()][['Country', 'Return', 'XWD Weight (%)']].head(5)
+dev_bottom_5 = df_developed[df_developed['Return'].notna()][['Country', 'Return', 'XWD Weight (%)']].tail(5)
 
-em_top_5 = df_emerging.head(5)
-em_bottom_5 = df_emerging.tail(5)
+em_top_5 = df_emerging[df_emerging['Return'].notna()][['Country', 'Return', 'EEM Weight (%)']].head(5)
+em_bottom_5 = df_emerging[df_emerging['Return'].notna()][['Country', 'Return', 'EEM Weight (%)']].tail(5)
 
 top_5 = df_joined[['Country', 'Return', 'Weight']].sort_values(by='Return', ascending=False).head(5)
-bottom_5 = df_joined[['Country', 'Return', 'Weight']].sort_values(by='Return', ascending=True).head(5)
+bottom_5 = df_joined[['Country', 'Return', 'Weight']].sort_values(by='Return', ascending=False,
+                                                                  na_position='first').tail(5)
 
 top_5.rename(columns={'Return': 'Return (%)',
-                      'Weight': 'ACWI Weight (%)'},
+                      'Weight': 'Weight (%)*'},
              inplace=True)
 
 bottom_5.rename(columns={'Return': 'Return (%)',
-                         'Weight': 'ACWI Weight (%)'},
+                         'Weight': 'Weight (%)*'},
                 inplace=True)
 
+dev_top_5.rename(columns={'Return': 'Return (%)',
+                          'XWD Weight (%)': 'Weight (%)**'},
+                 inplace=True)
+
+dev_bottom_5.rename(columns={'Return': 'Return (%)',
+                             'XWD Weight (%)': 'Weight (%)**'},
+                    inplace=True)
+
+em_top_5.rename(columns={'Return': 'Return (%)',
+                         'EEM Weight (%)': 'Weight (%)^'},
+                inplace=True)
+
+em_bottom_5.rename(columns={'Return': 'Return (%)',
+                            'EEM Weight (%)': 'Weight (%)^'},
+                   inplace=True)
+
+'''
+last thing to do if fix the bottom table to take out the nas
+'''
 
