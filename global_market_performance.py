@@ -374,9 +374,9 @@ cb_ax.tick_params(labelsize=20)
 plt.yticks([])
 plt.xticks([])
 plt.tight_layout()
-plt.show()
+# plt.show()
 
-# plt.savefig(f'global_market_performance_{end_date}.png', bbox_inches='tight')
+plt.savefig(f'global_market_performance_{end_date}.png', bbox_inches='tight')
 
 
 # %% create tables
@@ -387,18 +387,37 @@ df_emerging = df_joined[~df_joined['Country'].isin(developed)].sort_values('Retu
 dev_top_5 = df_developed[df_developed['Return'].notna()][['Country', 'Return', 'XWD Weight (%)']].head(5)
 dev_bottom_5 = df_developed[df_developed['Return'].notna()][['Country', 'Return', 'XWD Weight (%)']].tail(5)
 
-em_top_5 = df_emerging.head(5)
-em_bottom_5 = df_emerging.tail(5)
+em_top_5 = df_emerging[df_emerging['Return'].notna()][['Country', 'Return', 'EEM Weight (%)']].head(5)
+em_bottom_5 = df_emerging[df_emerging['Return'].notna()][['Country', 'Return', 'EEM Weight (%)']].tail(5)
 
-top_5 = df_joined[['Country', 'Return', 'Weight']].sort_values(by='Return', ascending=False).head(5)
-bottom_5 = df_joined[['Country', 'Return', 'Weight']].sort_values(by='Return', ascending=True).head(5)
+top_5 = df_joined[['Country', 'Return', 'Weight'].notna()].sort_values(by='Return', ascending=False).head(5)
+bottom_5 = df_joined[['Country', 'Return', 'Weight'].notna()].sort_values(by='Return', ascending=False).tail(5)
 
 top_5.rename(columns={'Return': 'Return (%)',
-                      'Weight': 'ACWI Weight (%)'},
+                      'Weight': 'Weight (%)*'},
              inplace=True)
 
 bottom_5.rename(columns={'Return': 'Return (%)',
-                         'Weight': 'ACWI Weight (%)'},
+                         'Weight': 'Weight (%)*'},
                 inplace=True)
 
+dev_top_5.rename(columns={'Return': 'Return (%)',
+                          'XWD Weight (%)': 'Weight (%)**'},
+                 inplace=True)
+
+dev_bottom_5.rename(columns={'Return': 'Return (%)',
+                             'XWD Weight (%)': 'Weight (%)**'},
+                    inplace=True)
+
+em_top_5.rename(columns={'Return': 'Return (%)',
+                         'EEM Weight (%)': 'Weight (%)^'},
+                inplace=True)
+
+em_bottom_5.rename(columns={'Return': 'Return (%)',
+                            'EEM Weight (%)': 'Weight (%)^'},
+                   inplace=True)
+
+'''
+last thing to do if fix the bottom table to take out the nas
+'''
 

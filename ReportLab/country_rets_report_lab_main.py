@@ -25,6 +25,7 @@ os.chdir(path)
 from ReportLab import country_rets_report_lab_control as control
 from ReportLab.country_rets_report_lab_body import gen_body_table
 from ReportLab.country_rets_report_lab_header import gen_header_table
+from ReportLab.country_rets_report_lab_footer import gen_footer_table
 import importlib
 import global_market_performance
 importlib.reload(control)
@@ -53,7 +54,7 @@ global strategy, calc_date
 main_table = Table([
     [gen_header_table(width, main_table_heights[0])],
     [gen_body_table(width, main_table_heights[1])],
-    [''],
+    [gen_footer_table(width, main_table_heights[2])],
 ],
     colWidths=width,
     rowHeights=main_table_heights
