@@ -6,7 +6,11 @@ pip install gdal
 pipwin install fiona
 pip install geopandas
 
+exchangerates docs:
+https://exchangeratesapi.io/documentation/
+
 '''
+from datetime import datetime
 import io
 from urllib.request import urlopen
 import geopandas as gpd
@@ -28,6 +32,8 @@ import matplotlib.pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap, TwoSlopeNorm
 import seaborn as sns
 import difflib
+import yfinance as yf
+from pandas._libs.tslibs.offsets import BDay
 
 # from mpl_toolkits.axes_grid1 import make_axes_locatable
 # from selenium import webdriver
@@ -42,6 +48,7 @@ import difflib
 # driver = webdriver.Firefox()
 # driver.get("http://www.python.org")
 # assert "Python" in driver.title
+
 
 sns.set()
 
@@ -94,6 +101,14 @@ def get_stock_prices(symbol, start_date, end_date):
         .set_index('date').sort_index()
 
     return prices
+
+
+def get_yahoo_prices(ticker, start_date, end_date):
+
+    # load the data
+    df_data = yf.Ticker(ticker).history(start=start_date, end=end_date)
+
+    return df_data[['Close']]
 
 
 def period_return(ticker, start_date, end_date):
@@ -152,6 +167,22 @@ def get_etf_holdings(symbol):
 
     return df_weightings
 
+
+def fx_period_ror(ticker_list, start_date, end_date):
+    """
+    Determine the period ROR for each required currency
+    """
+    fx_ror_dict = {}
+
+    for ticker in ticker_list:
+        try:
+            fx_prices = get_yahoo_prices(ticker, start_date, end_date)
+            fx_ror_dict[ticker] = float(fx_prices.iloc[-1] / fx_prices.iloc[0] - 1)
+        except:
+            print(f'{ticker} could not be retrieved')
+
+    return fx_ror_dict
+
 # %% load in the tickers and retrieve the stock prices to calculate performance
 
 
@@ -168,12 +199,15 @@ df_returns = pd.DataFrame()
 
 begin_time = time.perf_counter()
 
-for ticker in df_tickers.index:
-    period_ror = period_return(ticker, start_date, end_date)
-    returns_dict[ticker] = period_ror.values[0]
+for ticker, fx_symbol in list(zip(df_tickers.index, df_tickers['FX_Symbol'])):
+    if fx_symbol != 'USD=X':
+        period_ror = period_return(ticker, start_date, end_date)
+        returns_dict[ticker]['Return'] = period_ror.values[0]
+        returns_dict[ticker]['FX Return'] = fx_period_ror([fx_symbol], start_date, end_date)[fx_symbol]
 
 # convert dict to df and concat to df_tickers
-df_returns = pd.Series(data=returns_dict, index=returns_dict.keys(), name='Return')
+df_returns = pd.DataFrame(data=returns_dict).T
+df_returns['Adjusted Return'] = np.round(((1+df_returns['Return'] / 100) * (1 + df_returns['FX Return']) - 1) * 100, 2)
 
 end_time = time.perf_counter()
 
@@ -349,7 +383,7 @@ c = ["darkred", "red", "lightcoral", "palegreen", "green", "darkgreen"]
 v = [0, .2, .4, .6, .8, 1.]
 l = list(zip(v, c))
 color_palette = LinearSegmentedColormap.from_list('rg', l, N=256)
-norm = TwoSlopeNorm(vmin=df_joined['Return'].min(), vcenter=0, vmax=df_joined['Return'].max())
+norm = TwoSlopeNorm(vmin=df_joined['Adjusted Return'].min(), vcenter=0, vmax=df_joined['Adjusted Return'].max())
 
 # create the plot
 ax = df_joined.plot(column='Return',
@@ -418,7 +452,8 @@ em_bottom_5.rename(columns={'Return': 'Return (%)',
                             'EEM Weight (%)': 'Weight (%)^'},
                    inplace=True)
 
-'''
-last thing to do if fix the bottom table to take out the nas
-'''
+# %% Currency adjustment
 
+forex_list = df_tickers['FX_Symbol'].unique().tolist()
+
+test = fx_period_ror(forex_list, start_date, end_date)
