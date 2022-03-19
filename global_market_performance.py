@@ -188,7 +188,7 @@ def fx_period_ror(ticker_list, start_date, end_date):
 
 df_tickers = pd.read_excel('country_tickers.xlsx', index_col=0, header=0)
 start_date = '2021-12-31'
-end_date = '2022-03-11'
+end_date = '2022-03-18'
 
 # initialize dicts and df
 returns_dict = collections.defaultdict(dict)
@@ -386,7 +386,7 @@ color_palette = LinearSegmentedColormap.from_list('rg', l, N=256)
 norm = TwoSlopeNorm(vmin=df_joined['Adjusted Return'].min(), vcenter=0, vmax=df_joined['Adjusted Return'].max())
 
 # create the plot
-ax = df_joined.plot(column='Return',
+ax = df_joined.plot(column='Adjusted Return',
                     figsize=(40, 20),
                     cmap=color_palette,
                     legend=True,
@@ -415,40 +415,44 @@ plt.savefig(f'global_market_performance_{end_date}.png', bbox_inches='tight')
 
 # %% create tables
 
-df_developed = df_joined[df_joined['Country'].isin(developed)].sort_values('Return', ascending=False)
-df_emerging = df_joined[~df_joined['Country'].isin(developed)].sort_values('Return', ascending=False)
+df_developed = df_joined[df_joined['Country'].isin(developed)].sort_values('Adjusted Return', ascending=False)
+df_emerging = df_joined[~df_joined['Country'].isin(developed)].sort_values('Adjusted Return', ascending=False)
 
-dev_top_5 = df_developed[df_developed['Return'].notna()][['Country', 'Return', 'XWD Weight (%)']].head(5)
-dev_bottom_5 = df_developed[df_developed['Return'].notna()][['Country', 'Return', 'XWD Weight (%)']].tail(5)
+dev_top_5 = df_developed[df_developed['Adjusted Return'].notna()][['Country',
+                                                                   'Adjusted Return', 'XWD Weight (%)']].head(5)
+dev_bottom_5 = df_developed[df_developed['Adjusted Return'].notna()][['Country',
+                                                                      'Adjusted Return', 'XWD Weight (%)']].tail(5)
 
-em_top_5 = df_emerging[df_emerging['Return'].notna()][['Country', 'Return', 'EEM Weight (%)']].head(5)
-em_bottom_5 = df_emerging[df_emerging['Return'].notna()][['Country', 'Return', 'EEM Weight (%)']].tail(5)
+em_top_5 = df_emerging[df_emerging['Adjusted Return'].notna()][['Country',
+                                                                'Adjusted Return', 'EEM Weight (%)']].head(5)
+em_bottom_5 = df_emerging[df_emerging['Adjusted Return'].notna()][['Country',
+                                                                   'Adjusted Return', 'EEM Weight (%)']].tail(5)
 
-top_5 = df_joined[['Country', 'Return', 'Weight']].sort_values(by='Return', ascending=False).head(5)
-bottom_5 = df_joined[['Country', 'Return', 'Weight']].sort_values(by='Return', ascending=False,
-                                                                  na_position='first').tail(5)
+top_5 = df_joined[['Country', 'Adjusted Return', 'Weight']].sort_values(by='Adjusted Return', ascending=False).head(5)
+bottom_5 = df_joined[['Country', 'Adjusted Return', 'Weight']].sort_values(by='Adjusted Return', ascending=False,
+                                                                           na_position='first').tail(5)
 
-top_5.rename(columns={'Return': 'Return (%)',
+top_5.rename(columns={'Adjusted Return': 'Return (%)',
                       'Weight': 'Weight (%)*'},
              inplace=True)
 
-bottom_5.rename(columns={'Return': 'Return (%)',
+bottom_5.rename(columns={'Adjusted Return': 'Return (%)',
                          'Weight': 'Weight (%)*'},
                 inplace=True)
 
-dev_top_5.rename(columns={'Return': 'Return (%)',
+dev_top_5.rename(columns={'Adjusted Return': 'Return (%)',
                           'XWD Weight (%)': 'Weight (%)**'},
                  inplace=True)
 
-dev_bottom_5.rename(columns={'Return': 'Return (%)',
+dev_bottom_5.rename(columns={'Adjusted Return': 'Return (%)',
                              'XWD Weight (%)': 'Weight (%)**'},
                     inplace=True)
 
-em_top_5.rename(columns={'Return': 'Return (%)',
+em_top_5.rename(columns={'Adjusted Return': 'Return (%)',
                          'EEM Weight (%)': 'Weight (%)^'},
                 inplace=True)
 
-em_bottom_5.rename(columns={'Return': 'Return (%)',
+em_bottom_5.rename(columns={'Adjusted Return': 'Return (%)',
                             'EEM Weight (%)': 'Weight (%)^'},
                    inplace=True)
 
