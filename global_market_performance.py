@@ -15,7 +15,6 @@ import io
 from urllib.request import urlopen
 import geopandas as gpd
 import geopandas.datasets
-import pandas as pd
 import pygeos
 import time
 import pandas as pd
@@ -176,8 +175,11 @@ def fx_period_ror(ticker_list, start_date, end_date):
 
     for ticker in ticker_list:
         try:
-            fx_prices = get_yahoo_prices(ticker, start_date, end_date)
-            fx_ror_dict[ticker] = float(fx_prices.iloc[-1] / fx_prices.iloc[0] - 1)
+            if ticker == 'CAD=X':
+                fx_ror_dict[ticker] = 0
+            else:
+                fx_prices = get_yahoo_prices(ticker, start_date, end_date)
+                fx_ror_dict[ticker] = float(fx_prices.iloc[-1] / fx_prices.iloc[0] - 1)
         except:
             print(f'{ticker} could not be retrieved')
 
