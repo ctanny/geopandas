@@ -190,7 +190,7 @@ def fx_period_ror(ticker_list, start_date, end_date):
 
 df_tickers = pd.read_excel('country_tickers.xlsx', index_col=0, header=0)
 start_date = '2021-12-31'
-end_date = '2022-03-18'
+end_date = '2022-03-31'
 
 # initialize dicts and df
 returns_dict = collections.defaultdict(dict)
@@ -206,6 +206,11 @@ for ticker, fx_symbol in list(zip(df_tickers.index, df_tickers['FX_Symbol'])):
         period_ror = period_return(ticker, start_date, end_date)
         returns_dict[ticker]['Return'] = period_ror.values[0]
         returns_dict[ticker]['FX Return'] = fx_period_ror([fx_symbol], start_date, end_date)[fx_symbol]
+
+    else:
+        period_ror = period_return(ticker, start_date, end_date)
+        returns_dict[ticker]['Return'] = period_ror.values[0]
+        returns_dict[ticker]['FX Return'] = 0
 
 # convert dict to df and concat to df_tickers
 df_returns = pd.DataFrame(data=returns_dict).T
