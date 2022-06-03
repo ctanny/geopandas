@@ -1,49 +1,50 @@
-Country,Weight,Region
-United States,59.27%,North America
-Japan,6.18%,Pacific
-United Kingdom,4.05%,Europe
-China,3.52%,Emerging Markets
-Canada,2.97%,North America
-France,2.57%,Europe
-Switzerland,2.37%,Europe
-Germany,2.19%,Europe
-Taiwan,2.05%,Emerging Markets
-Australia,1.83%,Pacific
-India,1.62%,Emerging Markets
-Korea,1.43%,Pacific
-Netherlands,1.10%,Europe
-Sweden,1.00%,Europe
-Hong Kong,0.79%,Pacific
-Italy,0.68%,Europe
-Denmark,0.60%,Europe
-Spain,0.59%,Europe
-Brazil,0.59%,Emerging Markets
-South Africa,0.42%,Emerging Markets
-Saudi Arabia,0.42%,Emerging Markets
-Finland,0.35%,Europe
-Singapore,0.33%,Pacific
-Russia,0.30%,Emerging Markets
-Thailand,0.28%,Emerging Markets
-Belgium,0.27%,Europe
-Mexico,0.23%,Emerging Markets
-Norway,0.23%,Europe
-Malaysia,0.20%,Emerging Markets
-Israel,0.19%,Middle East
-Indonesia,0.17%,Emerging Markets
-Other,0.15%,Other
-United Arab Emirates,0.13%,Emerging Markets
-Philippines,0.10%,Emerging Markets
+Country,Weight,REGION
+United States,59.53%,North America
+Japan,5.96%,Pacific
+United Kingdom,4.09%,Europe
+China,3.26%,Emerging Markets
+Canada,3.19%,North America
+France,2.45%,Europe
+Switzerland,2.43%,Europe
+Australia,2.23%,Pacific
+Germany,1.97%,Europe
+Taiwan,1.91%,Emerging Markets
+India,1.74%,Emerging Markets
+Korea,1.46%,Pacific
+Netherlands,0.99%,Europe
+Sweden,0.93%,Europe
+Hong Kong,0.78%,Pacific
+Brazil,0.67%,Emerging Markets
+Denmark,0.65%,Europe
+Italy,0.63%,Europe
+Spain,0.60%,Europe
+Saudi Arabia,0.55%,Emerging Markets
+South Africa,0.44%,Emerging Markets
+Singapore,0.36%,Pacific
+Finland,0.33%,Europe
+Thailand,0.31%,Emerging Markets
+Belgium,0.28%,Europe
+Mexico,0.26%,Emerging Markets
+Norway,0.25%,Europe
+Indonesia,0.21%,Emerging Markets
+Israel,0.21%,Middle East
+Malaysia,0.21%,Emerging Markets
+United Arab Emirates,0.17%,Emerging Markets
+Qatar,0.11%,Emerging Markets
+Kuwait,0.10%,Emerging Markets
 New Zealand,0.10%,Pacific
-Qatar,0.10%,Emerging Markets
-Poland,0.09%,Europe
-Austria,0.09%,Europe
-Kuwait,0.08%,Emerging Markets
-Ireland,0.06%,Europe
+Philippines,0.09%,Emerging Markets
+Austria,0.08%,Europe
+Poland,0.08%,Europe
 Chile,0.06%,Emerging Markets
-Portugal,0.05%,Europe
-Turkey,0.05%,Emerging Markets
-,,
-,,
-,,
-[1]FTSE Global All Cap Index,,
-"For more information about Vanguard funds or Vanguard ETFs, visit vanguard.com or call 800-523-1036 to obtain a prospectus or, if available, a summary prospectus. Investment objectives, risks, charges, expenses, and other important information are contained in the prospectus; read and consider it carefully before investing.",,
+Ireland,0.06%,Europe
+Turkey,0.06%,Emerging Markets
+Portugal,0.06%,Europe
+Greece,0.04%,Europe
+Other,0.04%,Other
+Colombia,0.03%,Emerging Markets
+Czech Republic,0.02%,Emerging Markets
+Hungary,0.02%,Emerging Markets
+Egypt,0.01%,Emerging Markets
+Pakistan,0.01%,Emerging Markets
+Romania,0.01%,Emerging Markets

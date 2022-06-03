@@ -8,7 +8,7 @@ variable so that this can be called into any report script.
 global strategy, calc_date
 
 strategy = 'global'
-calc_date = '2022-03-31'
+calc_date = '2022-05-31'
 title = f'{strategy}_market_performance_{calc_date}.pdf'
 background_color = '#6149EB'
 line_color = '#eba549'

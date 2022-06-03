@@ -21,7 +21,7 @@ from sqlalchemy.sql import text
 from sqlalchemy import create_engine
 from imp import reload
 from ReportLab.country_rets_report_lab_control import background_color, line_color
-import global_market_performance
+# import global_market_performance
 from global_market_performance import top_5, bottom_5, dev_top_5, em_top_5, dev_bottom_5, em_bottom_5
 from ReportLab import country_rets_report_lab_control as control
 import importlib
@@ -158,7 +158,7 @@ def gen_1st_component_row(width, height):
 
 def gen_2nd_component_row(width, height):
     """
-    Function to produce the content on the 1st component row of the body
+    Function to produce the content on the 2nd component row of the body
     - performance table
     - performance graph
 
@@ -227,7 +227,7 @@ def gen_2nd_component_row(width, height):
 
 def gen_3rd_component_row(width, height):
     """
-    Function to produce the content on the 1st component row of the body
+    Function to produce the content on the 3rd component row of the body
     - performance table
     - performance graph
 
