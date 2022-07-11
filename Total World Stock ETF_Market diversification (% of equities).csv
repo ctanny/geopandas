@@ -1,45 +1,45 @@
 Country,Weight,REGION
-United States,59.53%,North America
-Japan,5.96%,Pacific
-United Kingdom,4.09%,Europe
-China,3.26%,Emerging Markets
-Canada,3.19%,North America
-France,2.45%,Europe
-Switzerland,2.43%,Europe
-Australia,2.23%,Pacific
-Germany,1.97%,Europe
-Taiwan,1.91%,Emerging Markets
-India,1.74%,Emerging Markets
-Korea,1.46%,Pacific
-Netherlands,0.99%,Europe
+United States,59.34%,North America
+Japan,6.04%,Pacific
+United Kingdom,4.15%,Europe
+China,3.31%,Emerging Markets
+Canada,3.23%,North America
+France,2.48%,Europe
+Switzerland,2.36%,Europe
+Australia,2.20%,Pacific
+Germany,2.00%,Europe
+Taiwan,1.97%,Emerging Markets
+India,1.62%,Emerging Markets
+Korea,1.49%,Pacific
+Netherlands,1.00%,Europe
 Sweden,0.93%,Europe
-Hong Kong,0.78%,Pacific
-Brazil,0.67%,Emerging Markets
-Denmark,0.65%,Europe
-Italy,0.63%,Europe
-Spain,0.60%,Europe
-Saudi Arabia,0.55%,Emerging Markets
+Hong Kong,0.80%,Pacific
+Brazil,0.70%,Emerging Markets
+Italy,0.65%,Europe
+Denmark,0.63%,Europe
+Spain,0.63%,Europe
+Saudi Arabia,0.51%,Emerging Markets
 South Africa,0.44%,Emerging Markets
-Singapore,0.36%,Pacific
+Singapore,0.35%,Pacific
 Finland,0.33%,Europe
 Thailand,0.31%,Emerging Markets
-Belgium,0.28%,Europe
-Mexico,0.26%,Emerging Markets
+Belgium,0.27%,Europe
+Mexico,0.27%,Emerging Markets
 Norway,0.25%,Europe
-Indonesia,0.21%,Emerging Markets
-Israel,0.21%,Middle East
-Malaysia,0.21%,Emerging Markets
-United Arab Emirates,0.17%,Emerging Markets
+Indonesia,0.20%,Emerging Markets
+Israel,0.20%,Middle East
+Malaysia,0.20%,Emerging Markets
+United Arab Emirates,0.15%,Emerging Markets
 Qatar,0.11%,Emerging Markets
 Kuwait,0.10%,Emerging Markets
 New Zealand,0.10%,Pacific
 Philippines,0.09%,Emerging Markets
 Austria,0.08%,Europe
 Poland,0.08%,Europe
-Chile,0.06%,Emerging Markets
+Chile,0.07%,Emerging Markets
 Ireland,0.06%,Europe
-Turkey,0.06%,Emerging Markets
 Portugal,0.06%,Europe
+Turkey,0.06%,Emerging Markets
 Greece,0.04%,Europe
 Other,0.04%,Other
 Colombia,0.03%,Emerging Markets

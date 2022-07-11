@@ -190,7 +190,7 @@ def fx_period_ror(ticker_list, start_date, end_date):
 
 df_tickers = pd.read_excel('country_tickers.xlsx', index_col=0, header=0)
 start_date = '2021-12-31'
-end_date = '2022-05-31'
+end_date = '2022-06-30'
 
 # initialize dicts and df
 returns_dict = collections.defaultdict(dict)
